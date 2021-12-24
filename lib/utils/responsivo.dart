@@ -32,7 +32,7 @@ class Responsivo extends StatelessWidget {
         if (constraints.maxWidth >= 1200) {
           return desktop;
         } else if (constraints.maxWidth >= 800) {
-          Widget? tabletResult = this.tablet;
+          Widget? tabletResult = tablet;
           if (tabletResult != null) {
             return tabletResult;
           } else {
