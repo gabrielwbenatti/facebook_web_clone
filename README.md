@@ -1,6 +1,6 @@
 # facebook_web_aula
 
-A new Flutter project.
+Clone da UI do site/app do Facebook
 
 ## Getting Started
 
