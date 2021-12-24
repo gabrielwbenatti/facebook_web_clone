@@ -14,33 +14,28 @@ class PostCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
       padding: const EdgeInsets.all(5),
+      margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
       child: Column(
         children: [
           //CABEÇALHO
           HeadPost(post: post),
 
           //IMAGEM
-          Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(5),
-              child: CachedNetworkImage(
-                imageUrl: post.urlImage,
-              ),
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: CachedNetworkImage(
+              imageUrl: post.urlImage,
             ),
           ),
 
           //INTERAÇÕES
           Container(
             padding: const EdgeInsets.all(5),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
-            ),
             child: Column(
               children: [
                 Padding(
@@ -111,12 +106,6 @@ class HeadPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
-          )),
       padding: const EdgeInsets.all(10),
       child: Row(
         children: [
