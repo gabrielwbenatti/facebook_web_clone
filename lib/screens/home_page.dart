@@ -1,4 +1,6 @@
 import 'package:facebook_web_aula/components/circle_button.dart';
+import 'package:facebook_web_aula/components/contact_list.dart';
+import 'package:facebook_web_aula/components/options_list.dart';
 import 'package:facebook_web_aula/components/post_area.dart';
 import 'package:facebook_web_aula/components/post_card.dart';
 import 'package:facebook_web_aula/components/storie_area.dart';
@@ -18,8 +20,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final bool isDesktop = Responsivo.isDesktop(context);
-
     return Scaffold(
       backgroundColor: Colors.grey[200],
       body: const Responsivo(
@@ -37,38 +37,55 @@ class HomeDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Flexible(child: Container(), flex: 1),
         Flexible(
-            child: CustomScrollView(
-              slivers: [
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
-                  sliver: SliverToBoxAdapter(
-                    child: StorieArea(
-                      user: atualUser,
-                      stories: stories,
-                    ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: PostArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: OptionsList(),
+          ),
+          flex: 2,
+        ),
+        const Spacer(),
+        Flexible(
+          flex: 5,
+          child: CustomScrollView(
+            slivers: [
+              SliverPadding(
+                padding: const EdgeInsets.fromLTRB(0, 10, 0, 5),
+                sliver: SliverToBoxAdapter(
+                  child: StorieArea(
                     user: atualUser,
+                    stories: stories,
                   ),
                 ),
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      Post post = posts[index];
+              ),
+              SliverToBoxAdapter(
+                child: PostArea(
+                  user: atualUser,
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    Post post = posts[index];
 
-                      return PostCard(post: post);
-                    },
-                    childCount: posts.length,
-                  ),
+                    return PostCard(post: post);
+                  },
+                  childCount: posts.length,
                 ),
-              ],
+              ),
+            ],
+          ),
+        ),
+        const Spacer(),
+        Flexible(
+          flex: 2,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: ContactList(
+              users: onlineUsers,
             ),
-            flex: 2),
-        Flexible(child: Container(), flex: 1)
+          ),
+        )
       ],
     );
   }

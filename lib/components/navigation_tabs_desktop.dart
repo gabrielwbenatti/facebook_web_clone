@@ -1,7 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:facebook_web_aula/components/circle_button.dart';
+import 'package:facebook_web_aula/components/image_text.dart';
 import 'package:facebook_web_aula/components/navigation_tabs.dart';
-import 'package:facebook_web_aula/components/profile_image.dart';
+import 'package:facebook_web_aula/data/dados.dart';
 import 'package:facebook_web_aula/models/models.dart';
 import 'package:facebook_web_aula/utils/color_pallete.dart';
 import 'package:flutter/material.dart';
@@ -59,34 +59,18 @@ class NavigationBarDesktop extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Material(
-                  color: Colors.white,
-                  child: InkWell(
-                    onTap: () {},
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: CachedNetworkImageProvider(
-                            user.urlImage,
-                          ),
-                          backgroundColor: Colors.grey[200],
-                        ),
-                        const SizedBox(width: 5),
-                        Text(
-                          user.nome,
-                          style: const TextStyle(
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
+                ImageText(
+                  user: atualUser,
+                  onTap: () {},
                 ),
-                CircleButton(icon: Icons.search, onPressed: () {}),
-                CircleButton(icon: Icons.message, onPressed: () {}),
+                CircleButton(
+                  icon: Icons.search,
+                  onPressed: () {},
+                ),
+                CircleButton(
+                  icon: Icons.message,
+                  onPressed: () {},
+                ),
               ],
             ),
           ),

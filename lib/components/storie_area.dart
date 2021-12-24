@@ -18,13 +18,13 @@ class StorieArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(5, 5, 0, 5),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
       height: 200,
-      color: Colors.white,
-      child: ListView.separated(
-        separatorBuilder: (context, index) => const SizedBox(
-          width: 5,
-        ),
+      child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -59,59 +59,62 @@ class StorieItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(12),
-          child: CachedNetworkImage(
-            imageUrl: storie.urlImage,
+    return Container(
+      margin: const EdgeInsets.only(right: 8),
+      child: Stack(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child: CachedNetworkImage(
+              imageUrl: storie.urlImage,
+              height: double.infinity,
+              width: 120,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
             height: double.infinity,
             width: 120,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Container(
-          height: double.infinity,
-          width: 120,
-          decoration: BoxDecoration(
-            gradient: ColorPallete.storieGradient,
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-        Positioned(
-          top: 8,
-          left: 8,
-          child: Container(
-            height: 40,
-            width: 40,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
+            decoration: BoxDecoration(
+              gradient: ColorPallete.storieGradient,
+              borderRadius: BorderRadius.circular(12),
             ),
-            child: storie.addStorie
-                ? const Icon(
-                    Icons.add,
-                    color: ColorPallete.blueFacebook,
-                  )
-                : ProfileImage(
-                    imageUrl: storie.user.urlImage,
-                    visualized: storie.visualized,
-                  ),
           ),
-        ),
-        Positioned(
-          bottom: 8,
-          left: 8,
-          child: Text(
-            storie.addStorie ? 'Adicionar Storie' : storie.user.nome,
-            style: const TextStyle(
-              color: Colors.white,
+          Positioned(
+            top: 8,
+            left: 8,
+            child: Container(
+              height: 40,
+              width: 40,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+              child: storie.addStorie
+                  ? const Icon(
+                      Icons.add,
+                      color: ColorPallete.blueFacebook,
+                    )
+                  : ProfileImage(
+                      imageUrl: storie.user.urlImage,
+                      visualized: storie.visualized,
+                    ),
             ),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
           ),
-        ),
-      ],
+          Positioned(
+            bottom: 8,
+            left: 8,
+            child: Text(
+              storie.addStorie ? 'Adicionar Storie' : storie.user.nome,
+              style: const TextStyle(
+                color: Colors.white,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

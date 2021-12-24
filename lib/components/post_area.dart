@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:facebook_web_aula/models/user.dart';
+import 'package:facebook_web_aula/utils/responsivo.dart';
 import 'package:flutter/material.dart';
 
 class PostArea extends StatelessWidget {
@@ -12,6 +13,8 @@ class PostArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDesktop = Responsivo.isDesktop(context);
+
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
       child: Column(
@@ -87,12 +90,14 @@ class PostArea extends StatelessWidget {
           ),
         ],
       ),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(10),
-          bottomRight: Radius.circular(10),
-        ),
+        borderRadius: isDesktop
+            ? BorderRadius.circular(10)
+            : const BorderRadius.only(
+                bottomLeft: Radius.circular(10),
+                bottomRight: Radius.circular(10),
+              ),
       ),
     );
   }
